@@ -1,42 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Be Capture</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- plugin css -->
-        <link href="{{asset('public/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
-
-         <!-- Plugins css -->
-     
-          <link href="{{asset('public/assets/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet">
-          <link href="{{asset('public/assets/libs/switchery/switchery.min.css')}}" rel="stylesheet">
-          <link href="{{asset('public/assets/libs/select2/select2.min.css')}}" rel="stylesheet">
-          <link href="{{asset('public/assets/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet">
-          <link href="{{asset('public/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}" rel="stylesheet">
-
-
-
-          <!-- third party css -->
-      
-        <link href="{{asset('public/assets/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
-        <link href="{{asset('public/assets/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet">
-        <link href="{{asset('public/assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet">
-        <link href="{{asset('public/assets/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet">
-        <!-- third party css end -->
-        <link href="{{asset('public/assets/libs/summernote/summernote-bs4.css')}}" rel="stylesheet">
-
-        <!-- App css -->
-
-        <link href="{{asset('public/assets/css/bootstrap.min.css')}}" rel="stylesheet">
-        @yield('styles')
-        <link href="{{asset('public/assets/css/icons.min.css')}}" rel="stylesheet">
-        <link href="{{asset('public/assets/css/app.min.css')}}" rel="stylesheet">
-        
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>WeHaul</title>
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="{{asset('public/assets/icons/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
+     <link href="{{asset('public/assets/icons/font-awesome/css/fontawesome-all.min.css')}}" rel="stylesheet">
+     <link href="{{asset('public/assets/icons/themify-icons/themify-icons.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/node_modules/morrisjs/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('public/assets/node_modules/datatables/media/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+
+    <!--Toaster Popup message CSS -->
+    
+    <link href="{{asset('public/assets/node_modules/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{asset('public/dist/css/style.min.css')}}" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="{{asset('public/dist/css/pages/dashboard1.css')}}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="skin-default fixed-layout">

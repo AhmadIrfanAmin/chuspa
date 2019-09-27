@@ -2,8 +2,8 @@ $(function () {
     "use strict";
     //This is for the Notification top right
     $.toast({
-            heading: 'Welcome to Elite admin'
-            , text: 'Use the predefined ones, or specify a custom position object.'
+            heading: 'Welcome to WeHaul'
+            , text: 'Admin Panel'
             , position: 'top-right'
             , loaderBg: '#ff6849'
             , icon: 'info'

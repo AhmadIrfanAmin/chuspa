@@ -23,3 +23,11 @@ Route::get('admin/login', function () {
 Route::get('admin/dashboard', function () {
     return view('admin.dashboard');
 });
+
+Route::get('admin/manage-vehicles', function () {
+    return view('admin.vehicles.manage-vehicles');
+});
+
+Route::get('admin/vehicle-type/add', function () {
+    return view('admin.vehicles.add-vehicle-type');
+});

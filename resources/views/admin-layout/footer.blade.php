@@ -1,170 +1,124 @@
-                </div> <!-- container -->
-                </div> <!-- content -->
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2019 &copy; by <a href="">Be Capture</a> 
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="javascript:void(0);">About Us</a>
-                                    <a href="javascript:void(0);">Help</a>
-                                    <a href="javascript:void(0);">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
-
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimscrollright">
+            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                    <li><b>With Light sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme working">1</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme">4</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
+                    <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
+                </ul>
+                <ul class="m-t-20 chatonline">
+                    <li><b>Chat option</b></li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/7.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                    </li>
+                </ul>
             </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-
         </div>
-        <!-- END wrapper -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<footer class="footer">
+    © 2019 WeHaul
+</footer>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="{{ URL::asset('public/assets/node_modules/jquery/jquery-3.2.1.min.js')}}"></script>
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <!-- User box -->
-                <div class="user-box">
-                    <div class="user-img">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                        <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
-                    </div>
-            
-                    <h5><a href="javascript: void(0);">Marcia J. Melia</a> </h5>
-                    <p class="text-muted mb-0"><small>Product Owner</small></p>
-                </div>
+<!-- Bootstrap popper Core JavaScript -->
+<script src="{{ URL::asset('public/assets/node_modules/popper/popper.min.js')}}"></script>
 
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <div class="row">
-                    <div class="col-6 text-center">
-                        <h4 class="mb-1 mt-0">8,504</h4>
-                        <p class="m-0">Balance</p>
-                    </div>
-                    <div class="col-6 text-center">
-                        <h4 class="mb-1 mt-0">8,504</h4>
-                        <p class="m-0">Balance</p>
-                    </div>
-                </div>
-                <hr class="mb-0" />
+<script src="{{ URL::asset('public/assets/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
-                <div class="p-3">
-                    <div class="custom-control custom-switch mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-                        <label class="custom-control-label" for="customSwitch1">Notifications</label>
-                    </div>
-                    <div class="custom-control custom-switch mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                        <label class="custom-control-label" for="customSwitch2">API Access</label>
-                    </div>
-                    <div class="custom-control custom-switch mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch3" checked>
-                        <label class="custom-control-label" for="customSwitch3">Auto Updates</label>
-                    </div>
-                    <div class="custom-control custom-switch mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch4" checked>
-                        <label class="custom-control-label" for="customSwitch4">Online Status</label>
-                    </div>
-                </div>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="{{ URL::asset('public/dist/js/perfect-scrollbar.jquery.min.js')}}"></script>
 
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                        </div>
+<!--Wave Effects -->
 
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-6.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
+<script src="{{ URL::asset('public/dist/js/waves.js')}}"></script>
 
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
+<!--Menu sidebar -->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+<script src="{{ URL::asset('public/dist/js/sidebarmenu.js')}}"></script>
+<!--Custom JavaScript -->
+<script src="{{ URL::asset('public/dist/js/custom.min.js')}}"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<!--morris JavaScript -->
+<script src="{{ URL::asset('public/assets/node_modules/raphael/raphael-min.js')}}"></script>
+<script src="{{ URL::asset('public/assets/node_modules/morrisjs/morris.min.js')}}"></script>
+<!-- Popup message jquery -->
 
+<script src="{{ URL::asset('public/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
+<!-- Chart JS -->
 
-    <script src="{{ URL::asset('public/assets/js/vendor.min.js')}}"></script>
+<script src="{{ URL::asset('public/dist/js/dashboard1.js')}}"></script>
 
-    <!-- Third Party js-->
-    <script src="{{ URL::asset('public/assets/libs/peity/jquery.peity.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/jquery-vectormap/jquery-jvectormap-us-merc-en.js')}}"></script>
-
-         <!-- Datatables js -->
-    <script src="{{ URL::asset('public/assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/datatables/dataTables.bootstrap4.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/libs/datatables/buttons.bootstrap4.min.js')}}"></script>
- 
-  
-        <!-- third party js ends -->
-
-        <!-- Datatables init -->
-        <script src="{{ URL::asset('public/assets/js/pages/datatables.init.js')}}"></script>
-
-        <script src="{{ URL::asset('public/assets/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
-        <script src="{{ URL::asset('public/assets/libs/switchery/switchery.min.js')}}"></script>
-        <script src="{{ URL::asset('public/assets/libs/select2/select2.min.js')}}"></script>
-        <script src="{{ URL::asset('public/assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
-        <script src="{{ URL::asset('public/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
-         <script src="{{ URL::asset('public/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
-       
-
-        <!-- Init js-->
-      
-        <script src="{{ URL::asset('public/assets/js/pages/form-advanced.init.js')}}"></script>
-
-    <!-- Dashboard init -->
-    <script src="{{ URL::asset('public/assets/js/pages/dashboard-1.init.js')}}"></script>
-
-    <!-- App js -->
-    <script src="{{ URL::asset('public/assets/js/app.min.js')}}"></script>
-    <script src="{{ URL::asset('public/assets/js/pages/tickets.js')}}"></script>
-     @yield('script-dashboard')
-     </body>
+<script src="{{ URL::asset('public/assets/node_modules/toast-master/js/jquery.toast.js')}}"></script>
+  <script src="{{ URL::asset('public/assets/node_modules/datatables/datatables.min.js')}}"></script>
+  <script>
+        $(document).ready(function(){
+            $('#myTable').DataTable();
+         });
+    </script>
+@yield('script-dashboard')
+</body>
 
 </html>
