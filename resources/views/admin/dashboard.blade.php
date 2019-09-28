@@ -101,7 +101,7 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">Customers Request Table</h4>
+				<h4 class="card-title">Customer Requests</h4>
 			
 				<h6 class="card-subtitle"></h6>
 

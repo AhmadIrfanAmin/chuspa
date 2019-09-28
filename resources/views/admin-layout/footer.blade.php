@@ -113,9 +113,12 @@
 
 <script src="{{ URL::asset('public/assets/node_modules/toast-master/js/jquery.toast.js')}}"></script>
   <script src="{{ URL::asset('public/assets/node_modules/datatables/datatables.min.js')}}"></script>
+<script src="{{ URL::asset('public/assets/node_modules/bootstrap-select/bootstrap-select.min.js')}}"></script>
+
   <script>
         $(document).ready(function(){
             $('#myTable').DataTable();
+            $('.selectpicker').selectpicker();
          });
     </script>
 @yield('script-dashboard')

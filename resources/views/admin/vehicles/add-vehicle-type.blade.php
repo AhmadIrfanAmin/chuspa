@@ -22,7 +22,7 @@
 					<div class="form-group">
 						<label>Price</label>
 						<input type="number" class="form-control form-control-line" name="price" min="0" required="required"> </div>
-						<button type="submit" class="btn btn-primary d-inlick">Submit</button>
+						<button type="submit" class="btn btn-primary d-inlick">Add</button>
 					</div>
 
 				</form>

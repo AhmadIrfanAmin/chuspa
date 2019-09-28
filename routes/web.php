@@ -38,3 +38,18 @@ Route::get('admin/manage-customers', function () {
 Route::get('admin/customer-detail', function () {
     return view('admin.customers.customer-detail');
 });
+
+Route::get('admin/manage-promos', function () {
+    return view('admin.promos.manage-promos');
+});
+
+Route::get('admin/promo/add', function () {
+    return view('admin.promos.add-promo');
+});
+Route::get('admin/manage-orders', function () {
+    return view('admin.orders.manage-orders');
+});
+
+Route::get('admin/order-details', function () {
+    return view('admin.orders.order-details');
+});

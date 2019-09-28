@@ -225,7 +225,7 @@
                           
                         </li>
                         <li>
-                            <a class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-orders')}}" aria-expanded="false">
                                 <i class="fab fa-first-order"></i>
                                 <span class="hide-menu">Orders
                                     <span class="badge badge-pill badge-primary text-white ml-auto">0</span>
@@ -242,7 +242,7 @@
                         
                         </li>
                         <li>
-                            <a class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-promos')}}" aria-expanded="false">
                                 <i class="fas fa-tags"></i>
                                 <span class="hide-menu">Promos/Discounts</span>
                             </a>
