@@ -30,19 +30,15 @@
 								<td>Edinburgh</td>
 								<td>61</td>
 								<td>61</td>
-								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										...
-										</button>
-										<div class="dropdown-menu">
-										<a class="dropdown-item" href="javascript:void(0)">Block</a>
-										
-										<a class="dropdown-item" href="{{url('admin/customer-detail')}}">View Detail</a>
+								
+									<td>
+										<div class="button-group">
+											<button type="button" class="btn waves-effect waves-light btn-danger btn-sm"><i class="fas fa-ban"></i></button>
+											<button type="button" class="btn waves-effect waves-light btn-sm btn-info"><i class="fas fa-eye"></i></button>
+											
 
-
-										</div>
-									</div> 
+										</div> 
+									
 								</td>
 
 							</tr>

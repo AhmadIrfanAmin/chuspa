@@ -30,15 +30,10 @@
 								<td>Edinburgh</td>
 								<td>61</td>
 								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										...
-										</button>
-										<div class="dropdown-menu">
-										<a class="dropdown-item" href="javascript:void(0)">Edit</a>
-										<a class="dropdown-item" href="javascript:void(0)">Delete</a>
+										<div class="button-group">
+										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
 
-										</div>
 									</div> 
 								</td>
 
@@ -48,19 +43,13 @@
 								<td>Accountant</td>
 								<td>Tokyo</td>
 								<td>63</td>
-								<td>  
-									<div class="btn-group">
-										<button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											...
-										</button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" href="javascript:void(0)">Edit</a>
-											<a class="dropdown-item" href="javascript:void(0)">Delete</a>
-											
-										</div>
+								<td>
+									<div class="button-group">
+										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
+
 									</div> 
 								</td>
-
 							</tr>
 
 						</tbody>
