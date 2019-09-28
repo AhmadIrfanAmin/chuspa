@@ -18,9 +18,10 @@ class CreatePromoDiscountsTable extends Migration
             $table->string('promo_code');
             $table->integer('discount_percentage')->default(0);
             $table->string('created_by')->nullable();
-            $table->string('status');
-            $table->integer('consume_count');
-            $table->string('fk_user_type');
+            //$table->string('status');
+            $table->enum('status',['Not Consumed Once','Consuming','Expired']);
+            $table->integer('consume_count')->default(0);
+            $table->string('fk_user_type')->nullable();
             $table->timestamps();
         });
     }

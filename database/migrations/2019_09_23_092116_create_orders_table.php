@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status');
+            //$table->string('status');
+            $table->enum('status',['pending','assigned','pickedup','address_not_found','driver_on_way','deliver_to_destination','other_reason']);
             $table->string('pickup');
             $table->string('dropoff');
             $table->decimal('trip_distance', 10, 4)->nullable();
@@ -30,14 +31,18 @@ class CreateOrdersTable extends Migration
             $table->string('country');
             $table->double('time');
            
-            $table->decimal('pickup_lat', 10, 7);
-            $table->decimal('pickup_long', 10, 7);
-            $table->decimal('dropoff_lat', 10, 7);
-            $table->decimal('dropoff_long', 10, 7);
+            // $table->decimal('pickup_lat', 10, 7);
+            // $table->decimal('pickup_long', 10, 7);
+            // $table->decimal('dropoff_lat', 10, 7);
+            // $table->decimal('dropoff_long', 10, 7);
 
-            $table->unsignedBigInteger('fk_promo_id');
+            $table->string('pickup_lat');
+            $table->string('pickup_long');
+            $table->string('dropoff_lat');
+            $table->string('dropoff_long');
+            $table->unsignedBigInteger('fk_promo_id')->nullable();
             $table->unsignedBigInteger('fk_customer_id');
-            $table->unsignedBigInteger('fk_driver_id');
+            $table->unsignedBigInteger('fk_driver_id')->nullable();
             
             $table->timestamps();
 

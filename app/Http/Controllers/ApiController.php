@@ -1,10 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
+use App\Order;
 use App\Vehicle_type;
+use App\App_image;
+use App\User_type;
 use \Illuminate\Support\Facades\Validator;
 use Auth;
 use \Illuminate\Http\Response;
@@ -124,22 +125,23 @@ class ApiController extends Controller
                     $login_user->_token = $user->remember_token;
 
 
-                    $vehicles_data = new \stdClass();
-                    $vehicles_data_array = array();
+                   // $vehicles_data = new \stdClass();
+                    //$vehicles_data_array = array();
                     //$vehicle_types = Vehicle_type::with('vehicle')->get();//all();
-                    $vehicle_types = Vehicle_type::with('vehicles')->get();//all();
+                    //$vehicle_types = Vehicle_type::with('vehicles')->get();//all();
+                    $vehicle_types = Vehicle_type::all();
                     
 
                    
                     ////vehicle::with('vehicle_type')->get();
-                    $vehicle_record = \DB::table('vehicle_types')
-                    ->select(\DB::raw('vehicle_types.*,vehicles.*'))
-                    ->join('vehicles', 'vehicle_types.id', '=', 'vehicles.fk_vehicle_type')
+                    //$vehicle_record = \DB::table('vehicle_types')
+                    //->select(\DB::raw('vehicle_types.*,vehicles.*'))
+                    //->join('vehicles', 'vehicle_types.id', '=', 'vehicles.fk_vehicle_type')
                     //->where('role_id',$roleId)
-                    ->get();
-                    dd($vehicle_record);
-                    foreach($vehicle_types as $vehicle_type)
-                    {
+                    //->get();
+                   // dd($vehicle_record);
+                    // foreach($vehicle_types as $vehicle_type)
+                    // {
                         //$vehicles_data->type_name = $vehicle_type->type_name;
                         //$vehicles_data->image_url = $vehicle_type->image_url;
                         //$vehicles_data->record = $vehicle_type->vehicles;
@@ -153,9 +155,9 @@ class ApiController extends Controller
                         //array_push($vehicles_data_array,$vehicle_type);
                         ///array_push($vehicles_data_array,$vehicle_type);
                         ///array_push($vehicles_data_array,$vehicle_type->vehicles);
-                    }
+                    //}
                     //dd($vehicles_data_array);
-                    $login_user->vehicle_info = $vehicles_data_array;//$vehicles_data;
+                    $login_user->vehicle_info = $vehicle_types;//$vehicles_data_array;//$vehicles_data;
 
                     $response->status = 'success';
                     $response->code = 200;
@@ -200,4 +202,211 @@ class ApiController extends Controller
             return response()->json($response);
         }
     }
+    // public function add_new_item(Request $request)
+    // {
+    //     $response = new \stdClass();
+    //     $validator = Validator::make($request->all(),[
+    //         ''.,'',
+            
+    //     ]);
+    // }
+    public function imageUploadPost(Request $request)
+    {
+
+        // request()->validate([
+
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        // ]);
+
+        $validator = Validator::make($request->all(), [
+            'image_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fk_order_id' => 'required',
+        ]);
+        $response = new \stdClass();
+        
+        if($validator->fails())
+        {
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+        }
+        else
+        {
+            if ($request->hasFile('image_url')) 
+            {
+                $image_file = $request->file('image_url');
+                $image_name = time() . '.' . $image_file->getClientOriginalExtension();
+                $destinationPath = public_path('/order_assets/images');
+               /// if (!File::isDirectory($destinationPath)) {
+               ///     File::makeDirectory($destinationPath, 0777, true, true);
+              ///  }
+              ///  $image_file->move($destinationPath, $image_name);
+            }
+
+            $App_Image_Object = new App_image();
+            $App_Image_Object->image_url = $image_name;
+            $App_Image_Object->fk_order_id = $request->fk_order_id;
+            $App_Image_Object->save();
+            $response->status = "success";
+            $response->code = 200;
+            $response->message = "Image Uploaded Successfully!";
+            $response->response = $App_Image_Object;
+            return response()->json($response);
+
+
+        }
+        //$imageName = time().'.'.request()->image_url->getClientOriginalExtension();
+
+  
+       // dd($imageName);
+        //request()->image_url->move(public_path('images'), $imageName);
+
+  
+
+        //return back()
+
+//            ->with('success','You have successfully upload image.')
+
+  ///          ->with('image',$imageName);
+
+    }
+
+    public function create_order(Request $request)
+    {
+        $response = new \stdClass();
+        $validator = Validator::make($request->all(), [
+            'status' => 'required',
+            'pickup' =>  'required',
+            'dropoff'=> 'required',
+            'trip_distance' => 'required',
+            'load_unload_time' => 'required',
+            'total_estimation' => 'required',
+            'payment_mode' => 'required',
+            'city' => 'required',
+            'zip_code' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'time' => 'required',
+            'pickup_lat' => 'required',
+            'pickup_long' => 'required',
+            'dropoff_lat' => 'required',
+            'dropoff_long' => 'required',
+            'fk_customer_id'=> 'required',
+            ////'fk_driver_id' => 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+
+        }
+        else
+        {
+            $orderToCreate = new Order();
+            $orderToCreate->city = $request->city;
+            $orderToCreate->country = $request->country;
+            $orderToCreate->state = $request->state;
+            $orderToCreate->zip_code = $request->zip_code;
+            $orderToCreate->dropoff = $request->dropoff;
+            $orderToCreate->pickup = $request->pickup;
+            $orderToCreate->dropoff_lat = $request->dropoff_lat;
+            $orderToCreate->dropoff_long = $request->dropoff_long;
+            $orderToCreate->pickup_lat = $request->pickup_lat;
+            $orderToCreate->pickup_long = $request->pickup_long;
+            $orderToCreate->fk_customer_id = $request->fk_customer_id;
+            $orderToCreate->fk_driver_id = $request->fk_driver_id;
+            $orderToCreate->fk_promo_id = $request->fk_promo_id;
+            $orderToCreate->load_unload_time = $request->load_unload_time;
+            $orderToCreate->payment_mode = $request->payment_mode;
+            $orderToCreate->status = $request->status;
+            $orderToCreate->time = $request->time;
+            $orderToCreate->tip = $request->tip;
+            $orderToCreate->total_estimation = $request->total_estimation;
+
+            $orderToCreate->save();
+
+            $response->status = "success";
+            $response->code = 200;
+            $response->message = "Order Created Successfully!";
+            $response->response = $orderToCreate;
+            return response()->json($response);
+
+        }
+    }
+
+    public function get_orders($id)
+    {
+        $response = new \stdClass();
+       /// $booking = Order::with('boxes.country','boxes.state')->where('customer_id',$id)->get();
+    }
+    public function getCustomerTypes()
+    {
+        $response = new \stdClass();
+        $customer_types = User_type::all();//->get();
+
+        if(!$customer_types)
+        {
+            $response->status = 'failed';
+            $response->code = 422;
+            $response->message = 'No Record Exist';
+            $response->response = [];
+            return response()->json($response);
+        }
+        else
+        {
+            
+            $response->status = 'success';
+            $response->code = 200;
+            $response->message = 'Customer Types';
+            $response->response = $customer_types;
+            return response()->json($response);
+        }
+    }
+    public function getCustomerOrders($id)
+    {
+        $response = new \stdClass();
+
+        $order_record = \DB::table('orders')
+                    ->select(\DB::raw('orders.*,app_images.*'))
+                    ->join('app_images', 'orders.id', '=', 'app_images.fk_order_id')
+                    ->where('fk_customer_id',$id)
+                    ->get();
+                    dd($order_record);
+       //// dd($order_record);
+        //$vehicle_record = \DB::table('vehicle_types')
+          //          ->select(\DB::raw('vehicle_types.*,vehicles.*'))
+            //        ->join('vehicles', 'vehicle_types.id', '=', 'vehicles.fk_vehicle_type')
+              //      //->where('role_id',$roleId)
+                //    ->get();
+        ///$customer_types = User_type::all();//->get();
+
+        if(!$order_record)
+        {
+            $response->status = 'failed';
+            $response->code = 422;
+            $response->message = 'No Record Exist';
+            $response->response = [];
+            return response()->json($response);
+        }
+        else
+        {
+            
+            $response->status = 'success';
+            $response->code = 200;
+            $response->message = 'Order Record';
+            $response->response = $order_record;
+            return response()->json($response);
+        }
+    }
+
+
+    
+  
 }
