@@ -61,3 +61,11 @@ Route::get('admin/manage-customer-types', function () {
 Route::get('admin/customer-type/add', function () {
     return view('admin.customer-types.add-customer-type');
 });
+
+Route::get('admin/manage-drivers', function () {
+    return view('admin.drivers.manage-drivers');
+});
+
+Route::get('admin/driver-detail', function () {
+    return view('admin.drivers.driver-detail');
+});

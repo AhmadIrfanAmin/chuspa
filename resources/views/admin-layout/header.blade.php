@@ -218,7 +218,7 @@
                             
                         </li>
                         <li>
-                            <a class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-drivers')}}" aria-expanded="false">
                                 <i class="fas fa-user-plus"></i>
                                 <span class="hide-menu">Drivers</span>
                             </a>
