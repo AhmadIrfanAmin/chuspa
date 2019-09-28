@@ -1,1 +1,0 @@
-order-details.blade.php

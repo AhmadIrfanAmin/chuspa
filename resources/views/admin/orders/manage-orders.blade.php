@@ -38,7 +38,7 @@
 								<td>
 									<div class="button-group">
 										<a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="btn waves-effect waves-light btn-sm btn-info"><i class="fas fa-eye" data-toggle="modal" data-target="#myModal"></i></a>
-										<a href="" class="btn waves-effect waves-light btn-sm btn-success"><i class="fas fa-map-marker-alt"></i> </a>
+										<a href="{{url('admin/order-driver-route')}}" class="btn waves-effect waves-light btn-sm btn-success"><i class="fas fa-map-marker-alt"></i> </a>
 										
 
 									</div> 

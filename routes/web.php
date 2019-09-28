@@ -50,9 +50,7 @@ Route::get('admin/manage-orders', function () {
     return view('admin.orders.manage-orders');
 });
 
-Route::get('admin/order-details', function () {
-    return view('admin.orders.order-details');
-});
+
 
 Route::get('admin/manage-customer-types', function () {
     return view('admin.customer-types.manage-customer-types');
@@ -68,4 +66,8 @@ Route::get('admin/manage-drivers', function () {
 
 Route::get('admin/driver-detail', function () {
     return view('admin.drivers.driver-detail');
+});
+
+Route::get('admin/order-driver-route', function () {
+    return view('admin.orders.driver-order-route');
 });
