@@ -31,3 +31,10 @@ Route::get('admin/manage-vehicles', function () {
 Route::get('admin/vehicle-type/add', function () {
     return view('admin.vehicles.add-vehicle-type');
 });
+
+Route::get('admin/manage-customers', function () {
+    return view('admin.customers.manage-customers');
+});
+Route::get('admin/customer-detail', function () {
+    return view('admin.customers.customer-detail');
+});

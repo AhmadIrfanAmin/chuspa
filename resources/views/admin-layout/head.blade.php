@@ -18,7 +18,7 @@
      <link href="{{asset('public/assets/icons/themify-icons/themify-icons.css')}}" rel="stylesheet">
     <link href="{{asset('public/assets/node_modules/morrisjs/morris.css')}}" rel="stylesheet">
     <link href="{{asset('public/assets/node_modules/datatables/media/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
-
+    
     <!--Toaster Popup message CSS -->
     
     <link href="{{asset('public/assets/node_modules/toast-master/css/jquery.toast.css')}}" rel="stylesheet">

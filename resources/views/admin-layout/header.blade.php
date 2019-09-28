@@ -211,9 +211,9 @@
                            
                         </li>
                         <li>
-                            <a class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-customers')}}" aria-expanded="false">
                                 <i class="fas fa-user"></i>
-                                <span class="hide-menu">Users</span>
+                                <span class="hide-menu">Customers</span>
                             </a>
                             
                         </li>
