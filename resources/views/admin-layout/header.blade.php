@@ -224,6 +224,13 @@
                             </a>
                           
                         </li>
+                         <li>
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-customer-types')}}" aria-expanded="false">
+                                <i class="fas fa-users"></i>
+                                <span class="hide-menu">Customer Types</span>
+                            </a>
+                          
+                        </li>
                         <li>
                             <a class=" waves-effect waves-dark" href="{{url('admin/manage-orders')}}" aria-expanded="false">
                                 <i class="fab fa-first-order"></i>

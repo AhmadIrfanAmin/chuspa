@@ -53,3 +53,11 @@ Route::get('admin/manage-orders', function () {
 Route::get('admin/order-details', function () {
     return view('admin.orders.order-details');
 });
+
+Route::get('admin/manage-customer-types', function () {
+    return view('admin.customer-types.manage-customer-types');
+});
+
+Route::get('admin/customer-type/add', function () {
+    return view('admin.customer-types.add-customer-type');
+});
