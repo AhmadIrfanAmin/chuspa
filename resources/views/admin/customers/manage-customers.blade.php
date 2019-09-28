@@ -34,11 +34,11 @@
 									<td>
 										<div class="button-group">
 											<button type="button" class="btn waves-effect waves-light btn-danger btn-sm"><i class="fas fa-ban"></i></button>
-											<button type="button" class="btn waves-effect waves-light btn-sm btn-info"><i class="fas fa-eye"></i></button>
-											
+											<a href="{{url('admin/customer-detail')}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fas fa-eye"></i></a>
+
 
 										</div> 
-									
+
 								</td>
 
 							</tr>

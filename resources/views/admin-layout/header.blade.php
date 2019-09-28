@@ -202,7 +202,7 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">--- Admin</li>
                         <li>
-                            <a class="waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <a class="waves-effect waves-dark" href="{{url('admin/dashboard')}}" aria-expanded="false">
                                 <i class="icon-speedometer"></i>
                                 <span class="hide-menu">Dashboard
                                    
