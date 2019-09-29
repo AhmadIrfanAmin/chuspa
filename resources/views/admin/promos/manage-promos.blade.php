@@ -25,14 +25,34 @@
 							</tr>
 						</thead>
 						<tbody>
+							@foreach($promo_discounts as $promo_discount)
 							<tr>
-								<td>653122</td>
-								<td>System Architect</td>
-								<td>23</td>
-								<td>Active</td>
-								<td>2019/09/28</td>
+								<td>{{$promo_discount->promo_code}}</td>
+								<td>{{$promo_discount->type_name}}</td>
+								<td>{{$promo_discount->discount_percentage}}</td>
+								@php
+								if({{$promo_discount->discount_percentage}})
+								{
+									$class = 'badge-success';
+								}
+								if({{$promo_discount->discount_percentage}})
+								{
+									$class = 'badge-success';
+								}
+								if({{$promo_discount->discount_percentage}})
+								{
+									$class = 'badge-success';
+								}
+								
+								@endphp
+
 								<td>
-										<div class="button-group">
+									<span class="badge badge-success">{{$promo_discount->status}}
+									</span>
+								</td>
+								<td>{{$promo_discount->created_at}}</td>
+								<td>
+									<div class="button-group">
 										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
 										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
 
@@ -40,6 +60,7 @@
 								</td>
 
 							</tr>
+							@endforeach
 							
 
 						</tbody>

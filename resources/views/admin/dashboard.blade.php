@@ -8,8 +8,8 @@
 				<div class="col-md-12">
 					<div class="d-flex no-block align-items-center">
 						<div>
-							<h3><i class="icon-screen-desktop"></i></h3>
-							<p class="text-muted">MYNEW CLIENTS</p>
+							<h3><i class="fab fa-first-order"></i></h3>
+							<p class="text-muted">Unassigned Orders</p>
 						</div>
 						<div class="ml-auto">
 							<h2 class="counter text-primary">23</h2>
@@ -32,8 +32,8 @@
 				<div class="col-md-12">
 					<div class="d-flex no-block align-items-center">
 						<div>
-							<h3><i class="icon-note"></i></h3>
-							<p class="text-muted">NEW PROJECTS</p>
+							<h3><i class="fab fa-first-order"></i></h3>
+							<p class="text-muted">Assigned Orders</p>
 						</div>
 						<div class="ml-auto">
 							<h2 class="counter text-cyan">169</h2>
@@ -56,8 +56,8 @@
 				<div class="col-md-12">
 					<div class="d-flex no-block align-items-center">
 						<div>
-							<h3><i class="icon-doc"></i></h3>
-							<p class="text-muted">NEW INVOICES</p>
+							<h3><i class="fab fa-first-order"></i></h3>
+							<p class="text-muted">Completed Orders</p>
 						</div>
 						<div class="ml-auto">
 							<h2 class="counter text-purple">157</h2>
@@ -80,8 +80,8 @@
 				<div class="col-md-12">
 					<div class="d-flex no-block align-items-center">
 						<div>
-							<h3><i class="icon-bag"></i></h3>
-							<p class="text-muted">All PROJECTS</p>
+							<h3><i class="fas fa-tags"></i></h3>
+							<p class="text-muted">Promos/Discounts</p>
 						</div>
 						<div class="ml-auto">
 							<h2 class="counter text-success">431</h2>

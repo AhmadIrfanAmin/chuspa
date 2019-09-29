@@ -39,13 +39,13 @@ Route::get('admin/customer-detail', function () {
     return view('admin.customers.customer-detail');
 });
 
-Route::get('admin/manage-promos', function () {
-    return view('admin.promos.manage-promos');
-});
+Route::get('admin/manage-promos', 'Admin\PromoDiscountController@index');
+Route::get('admin/promo/add', 'Admin\PromoDiscountController@create')->name('promos');
+Route::post('admin/promo/store', 'Admin\PromoDiscountController@store')->name('promo.store');
 
-Route::get('admin/promo/add', function () {
-    return view('admin.promos.add-promo');
-});
+
+
+
 Route::get('admin/manage-orders', function () {
     return view('admin.orders.manage-orders');
 });
