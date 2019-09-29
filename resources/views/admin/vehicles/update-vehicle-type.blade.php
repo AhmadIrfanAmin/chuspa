@@ -14,25 +14,25 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">Add New Vehicle</h4>
+				<h4 class="card-title">Update New Vehicle</h4>
 				<h6 class="card-subtitle">Manage Vehicles</h6>
 				<h6 class="card-subtitle"></h6>
-				<form class="form-material m-t-40" action="{{route('vehicle-type.store')}}" method="post" enctype="multipart/form-data">
+				<form class="form-material m-t-40" action="{{route('vehicle-type.update',$vehicle_type->id)}}" method="post">
 
 					{{csrf_field()}}
 					<div class="form-group">
 						<label> Vehicle Type Name</label>
-						<input type="text" class="form-control form-control-line" placeholder="" name="type_name" required="required"> </div>
+						<input type="text" class="form-control form-control-line" placeholder="" name="type_name" required="required" value="{{$vehicle_type->type_name}}"> </div>
 					
 					<div class="form-group">
 						<label>Vehicle Type Image</label>
-						<input type="file" class="form-control form-control-line" name="image_url" required="required"> 
+						<input type="file" class="form-control form-control-line" name="image_url"> 
 						
 					</div>
 					<div class="form-group">
 						<label>Price</label>
-						<input type="number" class="form-control form-control-line" name="price" min="0" required="required"> </div>
-						<button type="submit" class="btn btn-primary d-inlick">Add</button>
+						<input type="number" class="form-control form-control-line" name="price" min="0" required="required" value="{{$vehicle_type->price}}"> </div>
+						<button type="submit" class="btn btn-primary d-inlick">Update</button>
 					</div>
 
 				</form>

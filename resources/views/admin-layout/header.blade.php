@@ -242,9 +242,9 @@
                         </li>
                       
                         <li>
-                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-vehicles')}}" aria-expanded="false">
+                            <a class=" waves-effect waves-dark" href="{{url('admin/manage-vehicle-types')}}" aria-expanded="false">
                                 <i class="fas fa-bus"></i>
-                                <span class="hide-menu">Vehicles</span>
+                                <span class="hide-menu">Vehicle Types</span>
                             </a>
                         
                         </li>

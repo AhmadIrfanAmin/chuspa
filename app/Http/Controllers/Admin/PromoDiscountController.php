@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Promo_discount;
 use App\User_type;
 use Illuminate\Http\Request;
-
+use Validator;
 class PromoDiscountController extends Controller
 {
     public function index() {
@@ -20,21 +20,46 @@ class PromoDiscountController extends Controller
     	$user_types = User_type::all();
     	return view('admin.promos.add-promo',compact('user_types'));
     }
-    public function store() {
+    public function store(Request $request) {
     	$this->validate(request(), [
             'promo_code' => 'required',
             'discount_percentage' => 'required',
             'status' => 'required',
             'fk_user_type' => 'required',
             ]);
-        Promo_discount::create([
-            'promo_code' => $request->promo_code,
-            'discount_percentage' => $request->discount_percentage,
-            'created_by' =>	\Auth::user()->id,
-            'status' => $request->status,
-            'fk_user_type'=>$request->fk_user_type,
-        ]);
+    	$promo_discount = new Promo_discount;
+        $promo_discount->promo_code = $request->promo_code;
+        $promo_discount->discount_percentage = $request->discount_percentage;
+        $promo_discount->status = $request->status;
+        $promo_discount->fk_user_type = $request->fk_user_type;
+        $promo_discount->created_by = 1;
+        $promo_discount->save();
         return redirect()->route('promos');
     }
-    
+    public function edit($id) {
+        $promo_discount=Promo_discount::find($id);
+        $user_types = User_type::all();
+        return view('admin.promos.update-promo',compact('promo_discount','user_types'));
+    }
+     public function update(Request $request, $id) {
+        $this->validate(request(), [
+            'promo_code' => 'required',
+            'discount_percentage' => 'required',
+            'status' => 'required',
+            'fk_user_type' => 'required',
+            ]);
+        $promo_discount = Promo_discount::find($id);
+      	$promo_discount->promo_code = $request->promo_code;
+        $promo_discount->discount_percentage = $request->discount_percentage;
+        $promo_discount->status = $request->status;
+        $promo_discount->fk_user_type = $request->fk_user_type;
+        $promo_discount->created_by = 1;
+        $promo_discount->save();
+        return redirect()->route('promos');
+    }
+    public function destroy($id) {
+        $promo_discount = Promo_discount::findOrFail($id);
+        $promo_discount->delete();
+        return redirect()->route('promos');
+	}
 }

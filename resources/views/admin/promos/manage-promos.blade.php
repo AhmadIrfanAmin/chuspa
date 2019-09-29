@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="row">
+	
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
@@ -28,33 +29,36 @@
 							@foreach($promo_discounts as $promo_discount)
 							<tr>
 								<td>{{$promo_discount->promo_code}}</td>
-								<td>{{$promo_discount->type_name}}</td>
+								<td>@php echo $promo_discount->type_name ? $promo_discount->type_name : '<span class="badge badge-primary text-white">N/A
+									</span>' @endphp
+								</td>
 								<td>{{$promo_discount->discount_percentage}}</td>
 								@php
-								if({{$promo_discount->discount_percentage}})
-								{
+								if($promo_discount->status=='Not Consumed Once') {
+									$class = 'badge-primary';
+								}
+								if($promo_discount->status == 'Consuming') {
 									$class = 'badge-success';
 								}
-								if({{$promo_discount->discount_percentage}})
-								{
-									$class = 'badge-success';
+								if($promo_discount->status == 'Expired') {
+									$class = 'badge-danger';
 								}
-								if({{$promo_discount->discount_percentage}})
-								{
-									$class = 'badge-success';
-								}
-								
 								@endphp
 
 								<td>
-									<span class="badge badge-success">{{$promo_discount->status}}
+									<span class="badge {{$class}}">{{$promo_discount->status}}
 									</span>
 								</td>
-								<td>{{$promo_discount->created_at}}</td>
+								<td>{{Wehaulhelper::print_date($promo_discount->created_at)}}</td>
 								<td>
 									<div class="button-group">
-										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
+										<form method="POST" action="{{ route('promo.destroy', [$promo_discount->id]) }}" class="d-inline">
+    									{{ csrf_field() }}
+    									{{ method_field('DELETE') }}
+    									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+    									</form>
+										
+										<a href="{{route('promo.edit', ['promo' => $promo_discount->id])}}" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></a>
 
 									</div> 
 								</td>

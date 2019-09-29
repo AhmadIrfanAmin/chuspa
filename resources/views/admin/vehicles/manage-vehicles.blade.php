@@ -24,33 +24,28 @@
 							</tr>
 						</thead>
 						<tbody>
+							@foreach($vehicle_types as $vehicle_type)
 							<tr>
-								<td>Tiger Nixon</td>
-								<td>System Architect</td>
-								<td>Edinburgh</td>
-								<td>61</td>
+								<td>{{$vehicle_type->type_name}}</td>
+								<td><img  src="{{url('images/vehicle_types',$vehicle_type->image_url)}}" style="width:50px;height:50px;" class="img-circle"></td>
+                                   
+								<td>{{$vehicle_type->price}}</td>
+								<td>{{Wehaulhelper::print_date($vehicle_type->created_at)}}</td>
 								<td>
-										<div class="button-group">
-										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
+										<form method="POST" action="{{ route('vehicle-type.destroy', [$vehicle_type->id]) }}" class="d-inline">
+    									{{ csrf_field() }}
+    									{{ method_field('DELETE') }}
+    									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+    									</form>
+										
+										<a href="{{route('vehicle-type.edit', ['type' => $vehicle_type->id])}}" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></a>
 
 									</div> 
 								</td>
 
 							</tr>
-							<tr>
-								<td>Garrett Winters</td>
-								<td>Accountant</td>
-								<td>Tokyo</td>
-								<td>63</td>
-								<td>
-									<div class="button-group">
-										<button type="button" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
-										<button type="button" class="btn waves-effect waves-light btn-info btn-sm"><i class="far fa-edit"></i></button>
-
-									</div> 
-								</td>
-							</tr>
+							@endforeach
+							
 
 						</tbody>
 					</table>

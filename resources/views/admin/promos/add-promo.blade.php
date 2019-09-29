@@ -1,6 +1,15 @@
 @extends('admin-layout.content')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="row">
 	<div class="col-12">
 		<div class="card">
@@ -8,7 +17,7 @@
 				<h4 class="card-title">Add Promo & Discount</h4>
 				<h6 class="card-subtitle">Manage Promos & Discounts</h6>
 				<h6 class="card-subtitle"></h6>
-				<form class="form-material m-t-40" action="" method="post">
+				<form class="form-material m-t-40" action="{{route('promo.store')}}" method="post">
 					{{csrf_field()}}
 					<div class="form-group">
 						<label> Promo Code</label>
@@ -18,7 +27,9 @@
 							<label>Customer Type</label>
 							<select class="form-control" name="fk_user_type">
 								<option value="">Select</option>
-								<option>Customer Type</option>
+								@foreach ($user_types as $user_type)
+								<option value="{{$user_type->id}}">{{$user_type->type_name}}</option>
+								@endforeach
 							</select>
 
 						</div>
@@ -30,8 +41,9 @@
 								<label>Status</label>
 								<select class="form-control" name="status">
 									<option value="">Select</option>
-									<option value="active">Active</option>
-									<option value="inactive">InActive</option>
+									<option value="Not Consumed Once">Not Consumed Once</option>
+									<option value="Consuming">Consuming</option>
+									<option value="Expired">Expired</option>
 								</select>
 
 							</div>
