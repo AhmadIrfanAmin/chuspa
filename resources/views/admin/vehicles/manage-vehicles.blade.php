@@ -5,10 +5,10 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">Vehicle Table</h4>
-				<h6 class="card-subtitle">Manage Vehicles</h6>
+				<h4 class="card-title">Vehicle Types Table</h4>
+				<h6 class="card-subtitle">Manage Vehicle Types</h6>
 				<h6 class="card-subtitle"></h6>
-				<a href="{{url('admin/vehicle-type/add')}}" class="btn btn-info btn-rounded m-t-10 float-right" ><i class="fa fa-plus-circle"></i> Add New Vehicle</a>
+				<a href="{{url('admin/vehicle-type/add')}}" class="btn btn-info btn-rounded m-t-10 float-right" ><i class="fa fa-plus-circle"></i> Add New Vehicle Type</a>
 
 				<div class="table-responsive m-t-40">
 

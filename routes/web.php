@@ -54,13 +54,19 @@ Route::get('admin/manage-orders', function () {
 
 
 
-Route::get('admin/manage-customer-types', function () {
-    return view('admin.customer-types.manage-customer-types');
-});
 
-Route::get('admin/customer-type/add', function () {
-    return view('admin.customer-types.add-customer-type');
-});
+Route::get('admin/manage-customer-types', 'Admin\CustomerTypeController@index')->name('user-types');
+Route::get('admin/customer-type/add', 'Admin\CustomerTypeController@create');
+Route::post('admin/promo/store', 'Admin\CustomerTypeController@store')->name('customer-type.store');
+Route::get('admin/customer-type/{type}/edit', 'Admin\CustomerTypeController@edit')->name('customer-type.edit');
+Route::post('admin/customer-type/{type}', 'Admin\CustomerTypeController@update')->name('customer-type.update');
+Route::delete('admin/customer-type/{id}', 'Admin\CustomerTypeController@destroy')->name('customer-type.destroy');
+
+
+
+
+
+
 
 Route::get('admin/manage-drivers', function () {
     return view('admin.drivers.manage-drivers');

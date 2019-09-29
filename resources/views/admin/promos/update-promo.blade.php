@@ -38,6 +38,9 @@
 							</select>
 
 						</div>
+						<div class="form-group">
+						<label> Consume Count</label>
+						<input type="number" class="form-control form-control-line" placeholder="" name="consume_count" required="required" value="{{$promo_discount->consume_count}}" min="0"> </div>
 
 						<div class="form-group">
 							<label>Discount Percentage</label>

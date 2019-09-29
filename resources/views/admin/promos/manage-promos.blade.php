@@ -20,6 +20,7 @@
 								<th>Customer Type</th>
 								<th>Discount Percentage</th>
 								<th>Status</th>
+								<th>Consume Count</th>
 								<th>Created Date</th>
 								<th>Action</th>
 
@@ -44,9 +45,11 @@
 									$class = 'badge-danger';
 								}
 								@endphp
-
 								<td>
-									<span class="badge {{$class}}">{{$promo_discount->status}}
+									{{$promo_discount->consume_count}}
+								</td>
+								<td>
+									<span class="badge {{$class}} text-white">{{$promo_discount->status}}
 									</span>
 								</td>
 								<td>{{Wehaulhelper::print_date($promo_discount->created_at)}}</td>

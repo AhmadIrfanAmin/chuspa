@@ -14,8 +14,8 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">Update New Vehicle</h4>
-				<h6 class="card-subtitle">Manage Vehicles</h6>
+				<h4 class="card-title">Update New Vehicle Type</h4>
+				<h6 class="card-subtitle">Manage Vehicle Types</h6>
 				<h6 class="card-subtitle"></h6>
 				<form class="form-material m-t-40" action="{{route('vehicle-type.update',$vehicle_type->id)}}" method="post">
 

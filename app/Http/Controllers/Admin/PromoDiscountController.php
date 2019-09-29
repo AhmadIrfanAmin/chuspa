@@ -25,13 +25,15 @@ class PromoDiscountController extends Controller
             'promo_code' => 'required',
             'discount_percentage' => 'required',
             'status' => 'required',
-            'fk_user_type' => 'required',
+            'consume_count' => 'required',
+            
             ]);
     	$promo_discount = new Promo_discount;
         $promo_discount->promo_code = $request->promo_code;
         $promo_discount->discount_percentage = $request->discount_percentage;
         $promo_discount->status = $request->status;
-        $promo_discount->fk_user_type = $request->fk_user_type;
+        $promo_discount->fk_user_type =  $request->fk_user_type ? $request->fk_user_type : 0;
+        $promo_discount->consume_count = $request->consume_count;
         $promo_discount->created_by = 1;
         $promo_discount->save();
         return redirect()->route('promos');
@@ -46,13 +48,14 @@ class PromoDiscountController extends Controller
             'promo_code' => 'required',
             'discount_percentage' => 'required',
             'status' => 'required',
-            'fk_user_type' => 'required',
+            'consume_count' => 'required',
             ]);
         $promo_discount = Promo_discount::find($id);
       	$promo_discount->promo_code = $request->promo_code;
         $promo_discount->discount_percentage = $request->discount_percentage;
         $promo_discount->status = $request->status;
-        $promo_discount->fk_user_type = $request->fk_user_type;
+        $promo_discount->fk_user_type = $request->fk_user_type ? $request->fk_user_type : 0;
+        $promo_discount->consume_count = $request->consume_count;
         $promo_discount->created_by = 1;
         $promo_discount->save();
         return redirect()->route('promos');
