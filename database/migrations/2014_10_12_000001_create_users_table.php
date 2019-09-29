@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
                 $table->integer('referred_count')->default(0);
                 $table->enum('role',['vehicle boy','customer']);
                 $table->string('contact');
+                $table->string('fcm_token')->nullable();
                 $table->string('home_address')->nullable();
                 $table->integer('online')->default(0);
                 $table->string('status')->default(1);

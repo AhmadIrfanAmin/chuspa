@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Order;
 use App\Vehicle_type;
+use App\Vehicle;
 use App\App_image;
 use App\User_type;
 use \Illuminate\Support\Facades\Validator;
@@ -109,7 +110,9 @@ class ApiController extends Controller
         } 
         else {
             
-            $user = User::where('email', $request->email)->first();//->where('role', 'customer')->first();
+            //$user = User::where('email', $request->email)->first();//->where('role', 'customer')->first();
+            $user = User::with("orders.app_images")->where('email', $request->email)->first();//->where('role', 'customer')->first();
+            
             if($user){
                 if (Hash::check($request->password, $user->password)) {
                     $user->remember_token = md5(time());
@@ -123,41 +126,11 @@ class ApiController extends Controller
                     $login_user->mobile = $user->contact;
                     $login_user->home_address = $user->home_address;
                     $login_user->_token = $user->remember_token;
+                    $login_user->orders = $user->orders;                    
 
-
-                   // $vehicles_data = new \stdClass();
-                    //$vehicles_data_array = array();
-                    //$vehicle_types = Vehicle_type::with('vehicle')->get();//all();
-                    //$vehicle_types = Vehicle_type::with('vehicles')->get();//all();
                     $vehicle_types = Vehicle_type::all();
-                    
-
                    
-                    ////vehicle::with('vehicle_type')->get();
-                    //$vehicle_record = \DB::table('vehicle_types')
-                    //->select(\DB::raw('vehicle_types.*,vehicles.*'))
-                    //->join('vehicles', 'vehicle_types.id', '=', 'vehicles.fk_vehicle_type')
-                    //->where('role_id',$roleId)
-                    //->get();
-                   // dd($vehicle_record);
-                    // foreach($vehicle_types as $vehicle_type)
-                    // {
-                        //$vehicles_data->type_name = $vehicle_type->type_name;
-                        //$vehicles_data->image_url = $vehicle_type->image_url;
-                        //$vehicles_data->record = $vehicle_type->vehicles;
-                        //$temp = $vehicles_data;
-                        //array_push($vehicles_data_array,$temp);
-                        //$vehicle_type = null;
-                        //$vehicles_data = null;
-                        ///$vehicles_data->vehicle   = $vehicle_type->vehicles;
-                        //$vehicles_data->type_name = $vehicle_type->type_name;
-                        //$vehicles_data->image_url = $vehicle_type->image_url;
-                        //array_push($vehicles_data_array,$vehicle_type);
-                        ///array_push($vehicles_data_array,$vehicle_type);
-                        ///array_push($vehicles_data_array,$vehicle_type->vehicles);
-                    //}
-                    //dd($vehicles_data_array);
-                    $login_user->vehicle_info = $vehicle_types;//$vehicles_data_array;//$vehicles_data;
+                    $login_user->vehicle_info = $vehicle_types;
 
                     $response->status = 'success';
                     $response->code = 200;
@@ -202,22 +175,10 @@ class ApiController extends Controller
             return response()->json($response);
         }
     }
-    // public function add_new_item(Request $request)
-    // {
-    //     $response = new \stdClass();
-    //     $validator = Validator::make($request->all(),[
-    //         ''.,'',
-            
-    //     ]);
-    // }
+   
     public function imageUploadPost(Request $request)
     {
 
-        // request()->validate([
-
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-        // ]);
 
         $validator = Validator::make($request->all(), [
             'image_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -341,15 +302,11 @@ class ApiController extends Controller
         }
     }
 
-    public function get_orders($id)
-    {
-        $response = new \stdClass();
-       /// $booking = Order::with('boxes.country','boxes.state')->where('customer_id',$id)->get();
-    }
+   
     public function getCustomerTypes()
     {
         $response = new \stdClass();
-        $customer_types = User_type::all();//->get();
+        $customer_types = User_type::all();
 
         if(!$customer_types)
         {
@@ -373,21 +330,14 @@ class ApiController extends Controller
     {
         $response = new \stdClass();
 
-        $order_record = \DB::table('orders')
-                    ->select(\DB::raw('orders.*,app_images.*'))
-                    ->join('app_images', 'orders.id', '=', 'app_images.fk_order_id')
+        $order_records = \DB::table('orders')
+                    ->select(\DB::raw('orders.*'))
+                   // ->join('app_images', 'orders.id', '=', 'app_images.fk_order_id')
                     ->where('fk_customer_id',$id)
                     ->get();
-                    dd($order_record);
-       //// dd($order_record);
-        //$vehicle_record = \DB::table('vehicle_types')
-          //          ->select(\DB::raw('vehicle_types.*,vehicles.*'))
-            //        ->join('vehicles', 'vehicle_types.id', '=', 'vehicles.fk_vehicle_type')
-              //      //->where('role_id',$roleId)
-                //    ->get();
-        ///$customer_types = User_type::all();//->get();
+        $customer_orders = Order::with("app_images")->where('fk_customer_id', $id)->get();//->where('role', 'customer')->first();
 
-        if(!$order_record)
+        if(!$customer_orders)
         {
             $response->status = 'failed';
             $response->code = 422;
@@ -397,16 +347,359 @@ class ApiController extends Controller
         }
         else
         {
-            
             $response->status = 'success';
             $response->code = 200;
             $response->message = 'Order Record';
-            $response->response = $order_record;
+            $response->response = $customer_orders;
             return response()->json($response);
+            
         }
+
     }
 
 
     
-  
+    public function changeOrderStatus(Request $request){
+        $response = new \stdClass();
+
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($validator->fails()){
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+        } else {
+            $order = Order::find($request->order_id);
+            if($order){
+                $order->status = $request->status;
+                $order->save();
+                $response->status = 'success';
+                $response->code = 200;
+                $response->message = 'Status Updated Successful';
+                $response->response = $order;
+                return response()->json($response);
+            }else{
+                $response->status = 'failed';
+                $response->code = 440;
+                $response->message = 'No Order Found';
+                $response->response = [];
+                return response()->json($response);
+            }
+        }
+    }
+    public function updateProfile(Request $request){
+        $response = new \stdClass();
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'contact' => 'required',
+            'password' => 'required',
+            'home_address' => 'required',
+        ]);
+
+        if($validator->fails()){
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+        } else {
+            $user = User::find($request->id);
+            if($user){
+                $user->status = $request->status;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
+                $user->email = $request->email;
+                $user->contact = $request->contact;
+                $user->password = Hash::make($request->password);//$request->password;  
+                $user->home_address = $request->home_address;              
+                $user->save();
+                $response->status = 'success';
+                $response->code = 200;
+                $response->message = 'Status Updated Successful';
+                $response->response = $user;
+                return response()->json($response);
+            }else{
+                $response->status = 'failed';
+                $response->code = 440;
+                $response->message = 'No User Found';
+                $response->response = [];
+                return response()->json($response);
+            }
+        }
+    }
+    public function checkOnlineStatus($id)
+    {
+        $response = new \stdClass();
+        $user = User::find($id);
+        if($user)
+        {
+            if($user->online==1)
+            {
+                $response->status = 'success';
+                $response->code = 200;
+                $response->message = 'online';
+                $response->response = [];
+                return response()->json($response);
+            }
+            else
+            {
+                $response->status = 'offline';
+                $response->code = 440;
+                $response->message = 'User Offline';
+                $response->response = [];
+                return response()->json($response);
+            }
+        }
+        else
+        {
+            $response->status = 'failed';
+            $response->code = 422;
+            $response->message = 'No User Found';
+            $response->response = [];
+            return response()->json($response);
+        }
+    }
+    public function setStatus(Request $request)
+    {
+        $response = new \stdClass();
+
+        $validator = Validator::make($request->all(), [
+            'online' => 'required',
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+        } else {}
+
+        $response = new \stdClass();
+        $user = User::find($id);
+        if($user)
+        {
+            $user->online = $request->online;
+            $user->save();
+            $response->status = 'success';
+                $response->code = 200;
+                $response->message = 'online';
+                $response->response = [];
+                return response()->json($response);
+        }
+        else
+        {
+            $response->status = 'failed';
+            $response->code = 422;
+            $response->message = 'No User Found';
+            $response->response = [];
+            return response()->json($response);
+        }
+    }
+
+    public function get_drivers(Request $request) {
+        $rules = array(
+            'longitude' => 'required',
+            'latitude' => 'required',
+            'radius' => 'required',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return [
+                'status' => 440,
+                'message' => $validator->errors()->first()
+            ];
+        }
+        $longitude = $request->longitude;
+        $latitude = $request->latitude;
+        $radius = $request->radius;
+        $get_drivers = \DB::table('users')
+                             ->select(\DB::raw('users.*,
+                              111.111 *
+                              DEGREES(ACOS(COS(RADIANS('.$latitude.'))
+                            * COS(RADIANS(latitude))
+                            * COS(RADIANS('.$longitude.' - longitude))
+                              + SIN(RADIANS('.$longitude.'))
+                            * SIN(RADIANS(latitude)))) AS radius'))
+                              ->where('role', '=','vehicle boy')
+                              ->having('radius', '<', $radius)
+                              ->get();
+        return response(['status' => 200, 'drivers' => $get_drivers]);
+    }
+    public function update_status(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required',
+            'status' => 'required',
+        ]);
+        if($validator->fails()){
+            $response->status = 'failed';
+            $response->code = 422;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+        } 
+        else 
+        {
+            $id = $request->order_id;
+            $status = $request->status;
+            $order_status = \DB::table('orders')
+                                ->where('id', $id)
+                                ->update(['status' => $status]);
+                                // Get fcm token from users tables using order_id
+            $fcm_token = \DB::table('orders')
+                                ->join('users', 'orders.fk_customer_id', '=', 'users.id')
+                                ->where('orders.id', $id)
+                                ->value('fcm_token');
+    
+                                //Send Notifications 
+                                // Start
+            define('API_ACCESS_KEY', 
+                'AAAAmHw-t58:APA91bGT8az1Cd5mZloii3dozhet-IMrYiqJUHk1ify-bx3_WXzJHQ6165TVIp2QcZj6vAsXm5Qg2yrC7oah4mfWv7roGTIAITELBLT-Z6jUa5riDIq97JkAzWR1Vwe5jeThdApMQqZe');
+            // Customize the msg if you want
+            $msg = array (
+                        'title' => 'Order is'.' '.ucfirst($status),
+                        'message' => 'Status Changed',
+                    );
+            $fields = array (
+                            'registration_ids' => array($fcm_token),
+                            'data' => $msg
+                        );
+            $headers = array (
+                            'Authorization: key=' . API_ACCESS_KEY,
+                            'Content-Type: application/json'
+                        );
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://android.googleapis.com/gcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+            $result = curl_exec($ch);
+    
+            curl_close($ch);
+            // End
+            return response(['status' => 200, 'message' => 'Status Changed']);
+        }
+        
+    }
+    public function addVehicle(Request $request)
+    {
+        $response = new \stdClass();
+        $validator = Validator::make($request->all(), [
+            'fk_vehicle_type' => 'required',
+            'license_no' =>  'required',
+            'front_image_url'=> 'required',
+            'left_image_url' => 'required',
+            'right_image_url' => 'required',
+            'color' => 'required',
+            'licence_image_url' => 'required',
+            'license_plate_url' => 'required',
+            'rachet_strap1_url' => 'required',
+            'rachet_strap2_url' => 'required',
+            'rachet_strap3_url' => 'required',
+            'rachet_strap4_url' => 'required',
+            'bungee_cord1_url' => 'required',
+            'bungee_cord2_url' => 'required',
+            'moving_blanket1_url' => 'required',
+            'moving_blanket2_url' => 'required',
+            'tarp_url'=> 'required',
+            'fk_driver_id'=>'required',
+        ]);
+
+        if($validator->fails())
+        {
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+
+        }
+        else
+        {
+            $vehicle = new Vehicle();
+            $vehicle->fk_vehicle_type = $request->fk_vehicle_type;  
+            $vehicle->license_no = $request->license_no;
+            $vehicle->front_image_url = $request->front_image_url;
+            $vehicle->left_image_url = $request->left_image_url;
+            $vehicle->right_image_url = $request->right_image_url;
+            $vehicle->color = $request->color;
+            $vehicle->licence_image_url = $request->licence_image_url;
+            $vehicle->license_plate_url = $request->license_plate_url;
+            $vehicle->rachet_strap1_url = $request->rachet_strap1_url;
+            $vehicle->rachet_strap2_url = $request->rachet_strap2_url;
+            $vehicle->rachet_strap3_url = $request->rachet_strap3_url;
+            $vehicle->rachet_strap4_url = $request->rachet_strap4_url;
+            $vehicle->bungee_cord1_url = $request->bungee_cord1_url;
+            $vehicle->bungee_cord2_url = $request->bungee_cord2_url;
+            $vehicle->moving_blanket1_url = $request->moving_blanket1_url;
+            $vehicle->moving_blanket2_url = $request->moving_blanket2_url;
+            $vehicle->tarp_url = $request->tarp_url;
+            $vehicle->fk_driver_id = $request->fk_driver_id;
+            $vehicle->save();
+            $response->status = 'success';
+                $response->code = 200;
+                $response->message = 'New Vehicle Record Added !';
+                $response->response = $vehicle;
+                return response()->json($response);
+        }
+    }
+    public function checkPromoStatus(Request $request)
+    {
+        $response = new \stdClass();
+        $validator = Validator::make($request->all(), [
+            'promo_code' => 'required',
+            'fk_user_id' =>  'required',
+        ]);
+
+        if($validator->fails())
+        {
+            $response->status = 'failed';
+            $response->code = 440;
+            $response->message = 'validation failed';
+            $response->response = $validator->errors();
+            return response()->json($response);
+
+        }
+        else
+        {
+            $promo_discount = Promo_discount::where('promo_code', $request->promo_code)->first();//->where('role', 'customer')->first();
+            if(!$promo_discount)
+            {
+                $response->status = 'failed';
+                $response->code = 422;
+                $response->message = 'record not found';
+                $response->response = [];
+                return response()->json($response);
+            }
+            else
+            {
+                if($promo_discount->status != 'Expired')
+                {
+                    $response->status = "success";
+                    $response->code = 200;
+                    $response->message = 'Here is your discount percentage';
+                    $response->response = $promo_discount->discount_percentage;
+                }
+                else
+                {
+                    $response->status = "failed";
+                    $response->code = 422;
+                    $response->message = 'This Promo Code Expired';
+                    $response->response = $promo_discount->discount_percentage;
+                }
+            }
+        }
+    }
 }

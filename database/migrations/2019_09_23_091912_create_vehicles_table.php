@@ -15,7 +15,6 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('fk_vehicle_type');
             $table->string('license_no');
             $table->string('front_image_url');
             $table->string('left_image_url');
@@ -33,10 +32,14 @@ class CreateVehiclesTable extends Migration
             $table->string('moving_blanket2_url');
             $table->string('tarp_url');
             $table->timestamps();
+            $table->unsignedBigInteger('fk_vehicle_type');
+            $table->unsignedBigInteger('fk_driver_id');
 
 
             $table->foreign('fk_vehicle_type')
             ->references('id')->on('vehicle_types');
+            $table->foreign('fk_driver_id')
+            ->references('id')->on('users');
             //->onDelete('cascade');
 
 

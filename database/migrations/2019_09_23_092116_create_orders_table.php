@@ -30,11 +30,7 @@ class CreateOrdersTable extends Migration
             $table->string('state');
             $table->string('country');
             $table->double('time');
-           
-            // $table->decimal('pickup_lat', 10, 7);
-            // $table->decimal('pickup_long', 10, 7);
-            // $table->decimal('dropoff_lat', 10, 7);
-            // $table->decimal('dropoff_long', 10, 7);
+
 
             $table->string('pickup_lat');
             $table->string('pickup_long');
@@ -54,16 +50,7 @@ class CreateOrdersTable extends Migration
              $table->foreign('fk_driver_id')
              ->references('id')->on('users');
         });
-        // Schema::table('orders', function($table)
-        // {
-            
-        //     //$table->foreign('fk_promo_id')
-        //     //->references('id')->on('promo_discounts');
-        //     $table->foreign('fk_customer_id')
-        //     ->references('id')->on('users');
-        //     $table->foreign('fk_driver_id')
-        //     ->references('id')->on('users');
-        // });
+       
     }
 
     /**
