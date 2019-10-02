@@ -47,7 +47,7 @@ Route::middleware('CheckCustomerHeader')->get('/logout/{id}','ApiController@logo
 
 Route::middleware('CheckCustomerHeader')->get('/customer_types','ApiController@getCustomerTypes');
 
-Route::middleware('CheckCustomerHeader')->get('/customer/{id}/orders','ApiController@getCustomerOrders');
+Route::middleware('CheckCustomerHeader')->get('/customer/{id}/orders','ApiController@getCustomerOrders');// id and status 
 
 ///Route::post('/order/status/change','ApiController@changeOrderStatus');
 Route::post('/order/status/change','ApiController@update_status');

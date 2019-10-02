@@ -110,8 +110,8 @@ class ApiController extends Controller
         } 
         else {
             
-            //$user = User::where('email', $request->email)->first();//->where('role', 'customer')->first();
-            $user = User::with("orders.app_images")->where('email', $request->email)->first();//->where('role', 'customer')->first();
+            $user = User::where('email', $request->email)->first();//->where('role', 'customer')->first();
+            //$user = User::with("orders.app_images")->where('email', $request->email)->first();//->where('role', 'customer')->first();
             
             if($user){
                 if (Hash::check($request->password, $user->password)) {
@@ -124,9 +124,10 @@ class ApiController extends Controller
                     $login_user->last_name = $user->last_name;
                     $login_user->email = $user->email;
                     $login_user->mobile = $user->contact;
+                    $login_user->fcm_token = $request->fcm_token;
                     $login_user->home_address = $user->home_address;
                     $login_user->_token = $user->remember_token;
-                    $login_user->orders = $user->orders;                    
+                    //$login_user->orders = $user->orders;                    
 
                     $vehicle_types = Vehicle_type::all();
                    
